@@ -1,0 +1,16 @@
+class Solution:
+    def findTheWinner(self, n: int, k: int) -> int:
+        array=[i for i in range(n)]
+        loser=-1
+
+        while len(array)>1:
+            loser=(loser+k)%len(array)
+
+            array.pop(loser)
+            loser-=1
+        
+        return array[0]+1
+
+
+        
+            
