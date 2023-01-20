@@ -1,0 +1,17 @@
+class Solution:
+    def minDeletionSize(self, strs: List[str]) -> int:
+        col=len(strs[0])
+        res=0
+
+        for i in range(col):
+            prev=strs[0][i]
+            row=1
+            while row<len(strs):
+                cur=strs[row][i]
+                if cur<prev:
+                    res+=1
+                    break
+                prev=cur
+                row+=1
+
+        return res
