@@ -1,0 +1,16 @@
+class Solution:
+    def countDistinctIntegers(self, nums: List[int]) -> int:
+        def reverse(num):
+            res = 0 
+            while num:
+                res = res*10 + num%10
+                num//=10
+            return res
+        counts = Counter(nums)
+        for num in nums:
+            reversedNum = reverse(num)
+
+            counts[reversedNum]+=1
+        res = 0
+
+        return len(counts)
