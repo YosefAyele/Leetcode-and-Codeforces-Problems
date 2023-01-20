@@ -1,0 +1,16 @@
+class Solution:
+    def isToeplitzMatrix(self, matrix: List[List[int]]) -> bool:
+        forward_diagonals={}
+
+        m, n = len(matrix) , len(matrix[0])
+        for row in range(m):
+            for col in range(n):
+                if row-col in forward_diagonals:
+                    forward_diagonals[row-col].add(matrix[row][col])
+                else:
+                    forward_diagonals[row-col]=set([matrix[row][col]])
+        for key in forward_diagonals:
+            if len(forward_diagonals[key])>1:
+                return False
+        
+        return True
