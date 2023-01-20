@@ -1,0 +1,24 @@
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        # use binary search over a one dimensional array of size m*n
+
+        m, n = len(matrix), len(matrix[0])
+        first=0
+        last=m*n-1
+
+        while first<=last:
+            mid=(first+last)//2
+            cur_row=mid//n
+            cur_col=mid%n
+
+            cur_num=matrix[cur_row][cur_col]
+
+            if cur_num==target:
+                return True
+            elif cur_num>target:
+                last=mid-1
+            else:
+                first=mid+1
+
+        return False
+            
