@@ -1,0 +1,36 @@
+class Solution:
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        rows={i:set() for i in range(9)}
+        cols={i:set() for i in range(9)}
+
+        threeBythrees={(0,0):set(),(0,1):set(),(0,2):set(),(1,0):set(),(1,1):set(),(1,2):set(),(2,0):set(),(2,1):set(),(2,2):set()}
+
+        for row in range(9):
+            for col in range(9):
+                cellValue=board[row][col]
+                if cellValue==".":
+                    continue
+
+                if cellValue in rows[row]:
+                    return False
+                else:
+                    rows[row].add(cellValue)
+
+                
+                if cellValue in cols[col]:
+                    return False
+                else:
+                    cols[col].add(cellValue)
+                
+                threeGrid=(row//3,col//3)
+
+                if cellValue in threeBythrees[threeGrid]:
+                    return False
+                else:
+                    threeBythrees[threeGrid].add(cellValue)
+        return True
+
+
+
+
+                
