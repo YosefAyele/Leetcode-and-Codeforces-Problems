@@ -1,0 +1,14 @@
+class Solution:
+    def smallerNumbersThanCurrent(self, nums: List[int]) -> List[int]:
+        numsCpy = [num for num in nums]
+
+        numsCpy.sort()
+
+        resMap = {num:0 for num in nums}
+
+        for i in range(len(nums)-1,-1,-1):
+            resMap[numsCpy[i]] = i
+            
+        return [resMap[num] for num in nums]
+
+
