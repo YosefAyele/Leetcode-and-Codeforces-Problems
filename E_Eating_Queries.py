@@ -1,0 +1,31 @@
+from itertools import accumulate
+from bisect import bisect_left
+t=int(input())
+for _ in range(t):
+    n ,q = map(int,input().split())
+    sugars=list(map(int,input().split()))
+    sugars.sort(reverse=True)
+    sugars_sum=list(accumulate(sugars))
+
+
+    for i in range(q):
+        query=int(input())
+        left, right = 0, n-1
+
+        ans = -1
+        while left <= right:
+            mid = (left + right)//2
+
+            if sugars_sum[mid] >= query:
+                ans = mid
+                right = mid - 1
+            else:
+                left = mid + 1
+
+
+
+        if ans != -1:
+            print(ans+1)
+        else:
+            print(-1)        
+        
