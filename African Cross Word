@@ -1,0 +1,21 @@
+m, n = map(int,input().split())
+
+table= [ list(input()) for _ in range(m)]
+
+rows = {i:{} for i in range(m)}
+cols = {i:{} for i in range(n)}
+
+
+
+for row in range(m):
+    for col in range(n):
+        rows[row][table[row][col]] = rows[row].get(table[row][col],0) + 1
+        cols[col][table[row][col]] = cols[col].get(table[row][col],0) + 1
+
+res = []
+for row in range(m):
+    for col in range(n):
+        letter = table[row][col]
+        if rows[row][letter] == 1 and cols[col][letter] == 1:
+            res.append(letter)
+print("".join(res))
