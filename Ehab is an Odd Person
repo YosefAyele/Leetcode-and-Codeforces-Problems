@@ -1,0 +1,16 @@
+n = int(input())
+
+array = list(map(int,input().split()))
+
+
+evens, odds = 0 , 0 
+for num in array:
+    if num%2:
+        odds += 1
+    else:
+        evens += 1
+if evens == 0 or odds == 0:
+    print(*array)
+else:
+    array.sort()
+    print(*array)
