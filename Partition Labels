@@ -1,0 +1,15 @@
+class Solution:
+    def partitionLabels(self, s: str) -> List[int]:
+        last_occurance = {char:i for i,char in enumerate(s)}
+
+        res = []
+        l=0 
+        cur_max = 0 
+        for r,letter in enumerate(s):
+            if r > cur_max:
+                res.append(r-l)
+                l=r
+            cur_max = max(last_occurance[letter],cur_max)
+
+        res.append(len(s)-l)
+        return res
