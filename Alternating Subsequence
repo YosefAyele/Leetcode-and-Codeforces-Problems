@@ -1,0 +1,22 @@
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    sequence = list(map(int,input().split()))
+    l  = 0
+    curr_max = sequence[l]
+    max_sum = 0
+    
+    for r in range(n):
+        curr_num = sequence[r]
+
+        if (curr_num > 0 and sequence[l] < 0 ) or curr_num < 0 and sequence[l] > 0:
+            max_sum += curr_max
+            l = r
+            curr_max = curr_num
+        curr_max = max(curr_max,curr_num)
+    max_sum += curr_max
+
+    print(max_sum)
+
+
+           
