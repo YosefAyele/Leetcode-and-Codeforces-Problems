@@ -1,0 +1,19 @@
+class Solution:
+    def rotate(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        m, n = len(matrix), len(matrix[0])
+
+        oneD = [0]*(m*n)
+
+        for row in range(m):
+            for col in range(n):
+                index = row * n + col
+                oneD[index] = matrix[row][col]
+        
+        for row in range(m):
+            for col in range(n):
+                index = (m-col-1)*n + row
+
+                matrix[row][col] = oneD[index]
