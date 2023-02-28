@@ -1,0 +1,16 @@
+def arrayManipulation(n, queries):
+    # Write your code here
+    
+    resArray = [0]*(n+1)
+    res = -math.inf
+    queries.sort()
+    
+    for start,end,value in queries:
+        resArray[start-1] += value
+        resArray[end] -= value
+    currSum = 0
+    for val in resArray:
+        currSum += val
+        res = max(res,currSum)
+    return res
+    
