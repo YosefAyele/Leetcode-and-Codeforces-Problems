@@ -6,12 +6,9 @@ class Solution:
             
             if num == 1:
                 return True
-            elif num < 1:
+            if num < 1 or num % 4:
                 return False
-            
-            if num%4: 
-                return False
-           
+    
             
             return recur(num//4)
         
