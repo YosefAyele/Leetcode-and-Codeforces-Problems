@@ -3,7 +3,7 @@ class Solution:
         
         
         requestFreq = [0]*(len(nums)+1)
-        
+        res = 0
         
         
         for start, end in requests:
@@ -15,25 +15,12 @@ class Solution:
         
         
         requestFreq = list(accumulate(requestFreq))
-        freqIdx = [(requestFreq[i],i) for i in range(len(nums))]
+        requestFreq.sort(reverse=True)
+        nums.sort(reverse = True)
         
-        freqIdx.sort(reverse=True)
-        nums.sort(reverse=True)
-        
-        best = [0] * len(nums)
-        for i,num in enumerate(nums):
+        for i in range(len(nums)):
             
-            best[freqIdx[i][1]] = num
-        
-        bestSum = list(accumulate(best))
-        
-        res = 0
-        
-        for start,end in requests:
-            
-            curr = bestSum[end] - bestSum[start] + best[start]
-            
-            res += curr
+            res += requestFreq[i]*nums[i]
         
         
         return res %(10**9 + 7)
