@@ -6,7 +6,7 @@ class Solution:
             res = 0
             for pile in piles:
                 
-                res += max(1,ceil(pile/speed))
+                res += ceil(pile/speed)
             
             return res
         
