@@ -5,24 +5,24 @@ class Solution:
     def firstBadVersion(self, n: int) -> int:
         
         
-        low = 1
+        low = -1
         high = n
-        ans = -1
+        # ans = -1
         
-        while low <= high:
+        while high > low + 1:
             
             mid = low + (high - low)//2
             
             if not isBadVersion(mid):
-                low = mid + 1
+                low = mid 
             
             else:
-                ans = mid
-                high = mid - 1
+
+                high = mid 
             
             
         
-        return ans 
+        return high
             
             
         
