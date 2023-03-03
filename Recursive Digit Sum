@@ -1,0 +1,15 @@
+def superDigit(n, k):
+    # Write your code here
+    def getSuper(strInt):
+        
+        if len(strInt) == 1:
+            return strInt
+        newStrInt = 0
+        
+        for digit in strInt:
+            newStrInt += int(digit)
+        return getSuper(str(newStrInt))
+    strInt = str(n)
+    finalInt = getSuper(strInt)*k
+    
+    return getSuper(finalInt)
