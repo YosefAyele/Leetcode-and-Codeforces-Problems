@@ -10,7 +10,7 @@ class Solution:
             mid = low + (high - low)//2
             
             if citations[mid] == n - mid:
-                return citations[mid]
+                return n - mid
             elif  citations[mid] < n - mid: 
                 low = mid
             else:
