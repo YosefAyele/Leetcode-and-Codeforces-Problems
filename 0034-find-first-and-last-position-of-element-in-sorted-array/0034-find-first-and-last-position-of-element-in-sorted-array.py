@@ -3,40 +3,40 @@ class Solution:
         n = len(nums)
         def findLeftMost():
         
-            left, right = 0, n-1
-            best = -1
+            left, right = -1, n
+            # best = -1
             
-            while left <= right:
+            while right > left + 1:
                 mid = (left + right)//2
                 
                 if nums[mid] >= target:
-                    best = mid
-                    right = mid - 1
+                    
+                    right = mid 
                 else:
-                    left = mid + 1
+                    left = mid 
             
-            return best
+            return right
         
         def findRightMost():
-            left, right = 0, n-1
+            left, right = -1, n
             best = -1
             
-            while left <= right:
+            while right > left + 1:
                 mid = (left + right)//2
                 
                 if nums[mid] <= target:
-                    best = mid
-                    left = mid + 1
+                    
+                    left = mid
                 else:
-                    right = mid - 1
+                    right = mid 
             
-            return best
+            return left
         
         
         left, right = findLeftMost(), findRightMost()
-        
-        if left < 0 or right < 0: return [-1, -1]
-        if nums[left] != target or (right < len(nums) and nums[right] != target): return [-1, -1]
+        print(left,right)
+        if left < 0 or right < 0 or right >= len(nums) or left >= len(nums): return [-1, -1]
+        if nums[left] != target or nums[right] != target: return [-1, -1]
         
         return [left, right]
         
