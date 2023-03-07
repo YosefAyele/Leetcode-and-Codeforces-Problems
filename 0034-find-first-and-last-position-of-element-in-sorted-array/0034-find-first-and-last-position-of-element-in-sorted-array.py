@@ -34,7 +34,7 @@ class Solution:
         
         
         left, right = findLeftMost(), findRightMost()
-        print(left,right)
+        # print(left,right)
         if left < 0 or right < 0 or right >= len(nums) or left >= len(nums): return [-1, -1]
         if nums[left] != target or nums[right] != target: return [-1, -1]
         
