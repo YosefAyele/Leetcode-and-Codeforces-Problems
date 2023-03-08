@@ -11,16 +11,17 @@ class Solution:
         ans = root.val
         
         def findKth(node):
-            nonlocal counter,ans
+            nonlocal counter
             if not node:
-                return 
+                return -1
             
-            findKth(node.left)
+            left = findKth(node.left)
             counter += 1
             if counter == k:
-                ans = node.val
-            findKth(node.right)
+                return node.val
             
-            return ans
+            right = findKth(node.right)
+            
+            return max(left,right)
             
         return findKth(root)
