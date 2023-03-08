@@ -6,47 +6,33 @@
 #         self.right = right
 class Solution:
     def verticalTraversal(self, root: Optional[TreeNode]) -> List[List[int]]:
-        def findHeight(node):
+        
+        vertical = {}
+        
+        def dfs(node,row,col):
             
             if not node:
-                return 0
-            left = right = 0
+                return
             
-            left += findHeight(node.left)
-            right += findHeight(node.right)
+            if col in vertical:
+                vertical[col].append((row,node.val))
+            else:
+                vertical[col] = [(row,node.val)]
             
-            return max(left,right) + 1
-        
-        maxHeight = findHeight(root) 
-        
-        maxWidth = 2**(maxHeight-1) + 1
-        
-        res = [[] for i in range(maxWidth)]
-        
-        def addElement(node,index,level,precedence):
-            
-            if not node:
-                return 
-            
-            if level == 0:
-                res[index].append((precedence,node.val))
-                
-            addElement(node.left,index - 1, level - 1,precedence+1)
-            addElement(node.right,index + 1, level - 1,precedence+1)
+            dfs(node.left,row+1,col-1)
+            dfs(node.right,row+1,col+1)
             
             return
-        for i in range(maxHeight):
-            
-            addElement(root,maxWidth//2,i,0)
-        
+        dfs(root,0,0)
         ans = []
         
-        for vertical in res:
-            if vertical:
-                vertical.sort()
-                curr = []
-                for node in vertical:
-                    curr.append(node[1])
-                ans.append(curr)
+        for i in sorted(vertical):
+            curr = vertical[i]
+            
+            curr.sort()
+            newCurr = [curr[i][1] for i in range(len(curr)) ]
+            
+            ans.append(newCurr)
         
         return ans
+        
