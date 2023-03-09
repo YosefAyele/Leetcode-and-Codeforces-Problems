@@ -8,7 +8,7 @@ class Solution:
             
             
             if len(currList) == k:
-                mega.append([num for num in currList])
+                mega.append(currList[:])
                 return
             if currVal > n:
                 return 
@@ -18,10 +18,10 @@ class Solution:
             
             
             # case2: Include the current
-            # currList.append(currVal)
-            getCombinations(currVal+1,currList+[currVal],maxIdx,k)
+            currList.append(currVal)
+            getCombinations(currVal+1,currList,maxIdx,k)
             
-            
+            currList.pop()
           
         
         
