@@ -5,18 +5,27 @@ class Solution:
         
         
         def getCombinations(currVal,currList,maxIdx,k):
-            currList.append(currVal)
+            
             
             if len(currList) == k:
                 mega.append(currList)
                 return
+            if currVal > n:
+                return 
+            
+            # case1: Not Include the current
+            getCombinations(currVal+1,[num for num in currList],maxIdx,k)
             
             
-            for j in range(currVal+1,maxIdx+1):
-                getCombinations(j,[num for num in currList],maxIdx,k)
+            # case2: Include the current
+            currList.append(currVal)
+            getCombinations(currVal+1,[num for num in currList],maxIdx,k)
+            
+            
+          
         
-        for i in range(1,n+1):
-            getCombinations(i,[],n,k)
+        
+        getCombinations(1,[],n,k)
         
         
         return mega
