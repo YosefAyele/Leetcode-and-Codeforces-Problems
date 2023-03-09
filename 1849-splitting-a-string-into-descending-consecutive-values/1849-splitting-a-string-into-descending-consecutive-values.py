@@ -5,9 +5,8 @@ class Solution:
         
         def split(idx,last):
             
-            # print(idx, last)
+            
             if idx == len(s):
-                
                 return True
 
             temp = False
@@ -21,9 +20,9 @@ class Solution:
             return temp
         
         ans = False
-        for end in range(1, len(s)):
+        for start in range(1, len(s)):
             
-            ans =  ans or split(end,int(s[:end]))
+            ans =  ans or split(start,int(s[:start]))
         
         
         return ans
