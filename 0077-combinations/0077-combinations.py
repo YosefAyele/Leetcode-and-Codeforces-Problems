@@ -19,7 +19,7 @@ class Solution:
             
             # case2: Include the current
             currList.append(currVal)
-            getCombinations(currVal+1,[num for num in currList],maxIdx,k)
+            getCombinations(currVal+1,currList,maxIdx,k)
             
             
           
