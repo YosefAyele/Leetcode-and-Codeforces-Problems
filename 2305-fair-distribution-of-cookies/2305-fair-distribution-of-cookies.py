@@ -22,13 +22,15 @@ class Solution:
                 return 
             for i in range(k):
                 # change kids value
-                newKids = kids.copy()
-                newKids[i] += cookies[idx]
                 
-                fair(idx+1,newKids)
+                kids[i] += cookies[idx]
+                
+                fair(idx+1,kids)
+                
+                kids[i] -= cookies[idx]
             
             
         fair(0,[0]*k)
         
         return res
-    # [20 , 0 , 0 , 0]   res = 2
+    
