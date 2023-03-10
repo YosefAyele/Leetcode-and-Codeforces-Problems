@@ -7,19 +7,29 @@ class Solution:
             
             if idx == len(nums):
                 curr = currList[:]
-                if curr not in res:
-                    res.append(curr)
+
+                res.append(curr)
                 return
             
             
+            # find the new index
+            i = idx + 1
+            newIdx = i
             
-            # case1 is not to include the current number
-            collect(idx+1,currList)
-
             # case2 is include the current number
             currList.append(nums[idx])
-            collect(idx+1,currList)
+            collect(newIdx,currList)
             currList.pop()
+            
+            while i < len(nums) and nums[i] == nums[idx]:
+                    i += 1
+                    newIdx = i
+                    
+            
+            # case1 is not to include the current number
+            collect(newIdx,currList[:])
+
+          
                 
         collect(0,[])
         res.sort()
