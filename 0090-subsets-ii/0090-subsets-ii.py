@@ -1,12 +1,12 @@
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
         res = []
+        nums.sort()
         def collect(idx,currList):
             nonlocal res
             
             if idx == len(nums):
                 curr = currList[:]
-                curr.sort()
                 if curr not in res:
                     res.append(curr)
                 return
