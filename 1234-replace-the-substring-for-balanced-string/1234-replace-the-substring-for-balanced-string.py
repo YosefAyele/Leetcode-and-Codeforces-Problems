@@ -23,17 +23,15 @@ class Solution:
             return True
                 
         left = 0
-        temp = {}
+        temp = defaultdict(int)
         res = inf
         # print(new)
         for right,letter in enumerate(s):
-            temp[letter] = temp.get(letter,0) + 1
+            temp[letter] += 1
             
-            while check(temp):
+            while left <= right and all(temp[char] >= new[char] for char in new):
                 res = min(res,right - left + 1)
                 temp[s[left]] -= 1
-                if temp[s[left]] == 0:
-                    del temp[s[left]]
                 left += 1
                 
         return res
