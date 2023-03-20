@@ -7,7 +7,7 @@ class Solution:
     def nextLargerNodes(self, head: Optional[ListNode]) -> List[int]:
         
         stack = []
-        listVersion = []
+        
         curr = defaultdict(int)
         temp = head
         idx = 0
@@ -17,8 +17,7 @@ class Solution:
                 curr[stack.pop()[1]] = temp.val
             stack.append((temp.val,idx))
             
-            listVersion.append(temp.val)
             idx += 1
             temp = temp.next
         
-        return [curr[i] for i in range(len(listVersion))]
+        return [curr[i] for i in range(idx)]
