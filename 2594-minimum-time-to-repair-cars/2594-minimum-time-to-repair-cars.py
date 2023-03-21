@@ -10,7 +10,7 @@ class Solution:
             return res
         
         low = 0
-        high = max(ranks) * (cars**2)
+        high = min(ranks) * (cars**2)
         
         while high > low + 1:
             mid = low + (high - low)//2
