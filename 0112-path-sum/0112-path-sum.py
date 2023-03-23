@@ -22,7 +22,7 @@ class Solution:
             left = dfs(node.left,sum_)
             right = dfs(node.right,sum_)
             
-            sum_ -= node.val
+            # sum_ -= node.val
             
             return left or right
             
