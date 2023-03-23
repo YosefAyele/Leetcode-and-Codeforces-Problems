@@ -23,7 +23,7 @@ class Solution:
             dfs(node.right,curr,sum_)
             
             curr.pop()
-            sum_ -= node.val
+            # sum_ -= node.val
             
             # return
         dfs(root,[],0)
