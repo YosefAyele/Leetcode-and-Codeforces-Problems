@@ -1,0 +1,35 @@
+t = int(input())
+
+
+def mergeSort(left, right, arr):
+    global level
+    if left == right:
+        return [arr[left]]
+    
+    mid = left + (right - left) // 2
+    left_half = mergeSort(left, mid, arr)
+    right_half = mergeSort(mid + 1, right, arr)
+
+    if left_half[0] < right_half[0]:
+        merged = left_half + right_half
+    else:
+        level += 1
+        merged = right_half + left_half
+
+    
+    
+        
+    return merged
+for _ in range(t):
+    n = int(input())
+    arr = list(map(int,input().split()))
+    level = 0
+    ans = n
+    check = True
+
+    ans = mergeSort(0,len(arr)-1,arr)
+    arr.sort()
+    if ans == arr:
+        print(level)
+    else:
+        print(-1)
