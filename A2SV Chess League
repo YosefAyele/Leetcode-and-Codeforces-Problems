@@ -1,0 +1,40 @@
+from cmath import inf
+
+
+n ,  k = list(map(int , input().split()))
+arr  = list(map(int , input().split()))
+
+def divide(l , r, array):
+
+    if r - l == 0:
+        return [l+1]
+    
+    merged = []
+    mid = (r + l ) // 2
+    left_side = divide(l , mid, array)
+    right_side = divide(mid +1, r , array)
+
+   
+    l_min = inf
+    r_min = inf
+    for idx in left_side:
+        l_min  = min(l_min,arr[idx-1])
+    for idx in right_side:
+        r_min = min(r_min,arr[idx-1])
+
+
+    for idx in left_side:
+        if arr[idx-1] > r_min or r_min - arr[idx-1] <= k:
+            merged.append(idx)
+    
+    for idx in right_side:
+        if arr[idx-1] > l_min or l_min - arr[idx-1] <= k:
+            merged.append(idx)
+    
+    return merged
+
+print(*divide(0 , 2**n - 1 , arr))
+
+
+
+ 
