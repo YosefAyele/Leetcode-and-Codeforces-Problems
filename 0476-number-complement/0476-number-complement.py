@@ -3,7 +3,7 @@ class Solution:
         
         mask = 1
         
-        while mask < (num << 1):
+        while mask <= num:
             num ^= mask
             mask <<= 1
             
