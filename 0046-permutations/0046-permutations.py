@@ -3,24 +3,24 @@ class Solution:
         
         res = []
         
-        def backtrack(curr,stt):
+        def backtrack(curr,mask):
             
             if len(curr) == len(nums):
                 res.append(curr[:])
                 return
             
-            for num in list(stt):
-                curr.append(num)
+            for i in range(len(nums)):
                 
-                stt.remove(num)
-                
-                backtrack(curr,stt)
-                
-                curr.pop()
-                stt.add(num)
-            return 
-        
-        backtrack([],set(nums))
+                if (1 << i) & mask:
+                    curr.append(nums[i])
+                    mask ^= (1 << i)
+                    
+                    backtrack(curr,mask)
+                    curr.pop()
+                    mask |= (1 << i)
+                    
+        mask = (1 << len(nums)) - 1
+        backtrack([],mask)
         
         return res
             
