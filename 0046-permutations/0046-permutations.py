@@ -1,23 +1,26 @@
 class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         
-        res = set()
+        res = []
         
-        def backtrack(idx,curr):
+        def backtrack(curr,stt):
             
             if len(curr) == len(nums):
-                res.add(tuple(curr[:]))
+                res.append(curr[:])
                 return
             
-            for i in range(len(nums)):
+            for num in list(stt):
+                curr.append(num)
                 
-                if nums[i] not in curr:
-                    curr.append(nums[i])
-                    backtrack(i,curr)
-                    curr.pop()
-
-            
-        for idx in range(len(nums)):
-            backtrack(idx,[])
+                stt.remove(num)
+                
+                backtrack(curr,stt)
+                
+                curr.pop()
+                stt.add(num)
+            return 
+        
+        backtrack([],set(nums))
         
         return res
+            
