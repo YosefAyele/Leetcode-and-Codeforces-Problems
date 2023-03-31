@@ -1,0 +1,16 @@
+t = int(input())
+
+for _ in range(t):
+    
+    x = int(input())
+
+    mask = 1
+
+    while mask <= x:
+        if mask & x:
+            if mask ^ x:
+                print(mask)
+            else:
+                print(mask|(x + 1))
+            break
+        mask <<= 1
