@@ -1,22 +1,22 @@
+isPrime = [True] * (10**6 + 1)
+isPrime[0] = isPrime[1] = False
+
+i = 2
+while i < len(isPrime):
+
+    if isPrime[i]:
+        j = i * i
+
+        while j < len(isPrime):
+            isPrime[j] = False
+            j += i
+    if i == 2:
+        i += 1
+    else:
+        i += 2
+        
 class Solution:
     def closestPrimes(self, left: int, right: int) -> List[int]:
-        
-        isPrime = [True] * (right + 1)
-        isPrime[0] = isPrime[1] = False
-        
-        i = 2
-        while i < len(isPrime):
-            
-            if isPrime[i]:
-                j = i * i
-                
-                while j < len(isPrime):
-                    isPrime[j] = False
-                    j += i
-            if i == 2:
-                i += 1
-            else:
-                i += 2
                 
         prev = -1
         curr = -1
