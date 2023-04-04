@@ -4,15 +4,8 @@ class Solution:
         def backtrack(curr,mask):
             nonlocal res
             if len(curr) == n:
-                check = True
-                
-                for i,num in enumerate(curr):
-                    if num%(i+1) and (i+1)%num:
-                        check = False
-                        break
-                if check:
-                    res += 1
-                return
+                res += 1
+                return 
             for i in range(n):
                 if mask & (1<<i):
                     idx = len(curr) + 1
