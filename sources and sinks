@@ -1,0 +1,23 @@
+n = int(input())
+graph = [list(map(int,input().split())) for _ in range(n)]
+
+sinks = [0]*n
+sources = [0]*n
+
+
+
+for row in range(n):
+    for col in range(n):
+        sinks[row] += graph[row][col]
+        sources[col] += graph[row][col]
+        
+src = []
+snk = []
+
+for i in range(n):
+    if not sources[i]:
+        src.append(i+1)
+    if not sinks[i]:
+        snk.append(i+1)
+print(len(src),*src)
+print(len(snk),*snk)
