@@ -1,0 +1,16 @@
+from collections import defaultdict
+
+
+n = int(input())
+
+graph = [list(map(int,input().split())) for _ in range(n)]
+
+res = defaultdict(list)
+
+for row in range(n):
+    for col in range(n):
+        if graph[row][col]:
+            res[row+1].append(col+1)
+
+for key in res:
+    print(len(res[key]),*res[key])
