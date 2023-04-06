@@ -1,0 +1,17 @@
+from collections import defaultdict
+
+
+n = int(input())
+k = int(input())
+graph = defaultdict(list)
+
+for _ in range(k):
+    operation = list(map(int,input().split()))
+
+    if operation[0] == 1:
+        _ , node1, node2 = operation
+        graph[node1].append(node2)
+        graph[node2].append(node1)
+    else:
+        if graph[operation[1]]:
+            print(*graph[operation[1]])
