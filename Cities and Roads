@@ -1,0 +1,11 @@
+n = int(input())
+
+graph = [list(map(int,input().split())) for _ in range(n)]
+
+res = 0
+
+for row in range(n):
+    for col in range(n):
+        if graph[row][col] == 1:
+            res += 1
+print(res//2)
