@@ -1,0 +1,25 @@
+n , m = map(int,input().split())
+array1 = list(map(int,input().split()))
+array2 = list(map(int,input().split()))
+
+merged_array = []
+pointer1, pointer2 = 0 , 0 
+
+while pointer1 < n and pointer2 < m:
+    number1 = array1[pointer1]
+    number2 = array2[pointer2]
+
+    if number1 < number2:
+        merged_array.append(number1)
+        pointer1 += 1
+    else:
+        merged_array.append(number2)
+        pointer2 += 1
+if pointer1 < n:
+    merged_array.extend(array1[pointer1:])
+if pointer2 < m:
+    merged_array.extend(array2[pointer2:])
+
+print(*merged_array)
+
+
