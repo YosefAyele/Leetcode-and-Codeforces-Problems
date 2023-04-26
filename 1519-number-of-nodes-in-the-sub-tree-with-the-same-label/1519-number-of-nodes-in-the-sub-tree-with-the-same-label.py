@@ -16,7 +16,7 @@ class Solution:
                 
                 arr = [0]*26
                 arr[idx] = 1
-                res[node] += 1
+                res[node] = 1
                 return arr
             curr = [0]*26
             
@@ -27,7 +27,7 @@ class Solution:
                         curr[i] += newarr[i]
                     
             curr[ord(labels[node])- 97] += 1
-            res[node] += curr[ord(labels[node])- 97]
+            res[node] = curr[ord(labels[node])- 97]
             return curr
         
         dfs(0)
