@@ -11,15 +11,15 @@ class Solution:
             
             for i in range(len(nums)):
                 
-                if (1 << i) & mask:
+                if not ((1 << i) & mask):
                     curr.append(nums[i])
-                    mask ^= (1 << i)
+                    mask |= (1 << i)
                     
                     backtrack(curr,mask)
                     curr.pop()
-                    mask |= (1 << i)
+                    mask ^= (1 << i)
                     
-        mask = (1 << len(nums)) - 1
+        mask = 0
         backtrack([],mask)
         
         return res
