@@ -15,8 +15,8 @@ class Solution:
             if not graph[node]:
                 res[node] = node
                 return quiet[node]
-            # if res[node] != 501:
-            #     return res[node]
+            if res[node] != 501:
+                return res[node]
             quietness = quiet[node]
             for child in graph[node]:
                 quietness = min(quietness,dfs(child))
