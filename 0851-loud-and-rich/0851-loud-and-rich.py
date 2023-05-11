@@ -10,19 +10,22 @@ class Solution:
         quiet_person = {quiet[i]:i for i in range(len(quiet))}
         visited = set()
         
-        @cache
+        # @cache
         def dfs(node):
+            
             if not graph[node]:
                 res[node] = node
-                return quiet[node]
+                return quiet[res[node]]
+            
             if res[node] != 501:
-                return res[node]
+                return  quiet[res[node]]
             quietness = quiet[node]
             for child in graph[node]:
+                # q = dfs(child)
                 quietness = min(quietness,dfs(child))
                 
             res[node] = quiet_person[quietness]
-            return quietness
+            return quiet[res[node]]
         
         for i in range(len(quiet)):
             if res[i] == 501:
