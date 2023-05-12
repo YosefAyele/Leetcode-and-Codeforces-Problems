@@ -38,8 +38,7 @@ class Solution:
             # print(node)
             if parent != -1:
                 degree[parent] -= 1
-            if len(res) > 2:
-                res.popleft()
+           
             if len(res) == 2 and res[0][1] < res[1][1]:
                 res.popleft()
             
@@ -49,6 +48,8 @@ class Solution:
                     degree[child] -= 1
                     if degree[child] == 1:
                         res.append((child,step))
+                        if len(res) > 2:
+                            res.popleft()
                         queue.append((child,node,step + 1))
                         
         return [x[0] for x in res]
