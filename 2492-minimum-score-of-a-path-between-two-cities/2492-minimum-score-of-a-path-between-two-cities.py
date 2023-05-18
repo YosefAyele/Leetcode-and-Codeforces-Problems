@@ -3,7 +3,7 @@ class UnionFind:
         self.root = {i+1:i+1 for i in range(size)}
         self.rank = {i+1:1 for i in range(size)}
         self.minDist = {i+1:inf for i in range(size)}
-        self.min = inf
+        
             
     def find(self, x):
         if x == self.root[x]:
@@ -17,10 +17,10 @@ class UnionFind:
         rootY = self.find(y)
         
         
-        self.min = min(self.minDist[rootX],self.minDist[rootY],dist)
+        min_ = min(self.minDist[rootX],self.minDist[rootY],dist)
         
-        self.minDist[rootX] = self.min
-        self.minDist[rootY] = self.min
+        self.minDist[rootX] = min_
+        self.minDist[rootY] = min_
         
 
         if rootX != rootY:
