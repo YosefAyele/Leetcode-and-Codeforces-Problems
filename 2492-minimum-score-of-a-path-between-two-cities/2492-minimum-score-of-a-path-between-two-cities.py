@@ -2,9 +2,7 @@ class UnionFind:
     def __init__(self, size):
         self.root = {i+1:i+1 for i in range(size)}
         self.rank = {i+1:1 for i in range(size)}
-        
-
-    
+            
     def find(self, x):
         if x == self.root[x]:
             return x
@@ -16,11 +14,8 @@ class UnionFind:
         rootX = self.find(x)
         rootY = self.find(y)
         
-        if rootX == 1 or rootX == len(self.root):
-            self.root[rootY] = rootX
-        elif rootY == 1 or rootY == len(self.root):
-            self.root[rootX] = rootY
-        elif rootX != rootY:
+     
+        if rootX != rootY:
             if self.rank[rootX] > self.rank[rootY]:
                 self.root[rootY] = rootX
             elif self.rank[rootX] < self.rank[rootY]:
@@ -40,7 +35,7 @@ class Solution:
             
         res = inf
         for a,b,dist in roads:
-            if uf.find(a) == 1 or uf.find(a) == n:
+            if uf.connected(a,1):
                 res = min(res,dist)
                 
         return res
