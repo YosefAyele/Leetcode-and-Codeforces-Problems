@@ -7,7 +7,7 @@ class Solution:
         nums.sort()
         
         ans = inf
-        print(nums)
+        
         
         j = len(nums) - 4
         
