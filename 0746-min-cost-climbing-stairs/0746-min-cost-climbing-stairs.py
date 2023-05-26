@@ -12,6 +12,7 @@ class Solution:
                 memo[step]  = cost[step] + min(dp(step+1),dp(step+2))
             return memo[step]
         
-        return min(dp(0),dp(1))
+        dp(0)
+        return min(memo[0],memo[1])
     
                 
