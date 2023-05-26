@@ -9,5 +9,6 @@ class Solution:
                 memo[house] = max(nums[house] + dp(house+2),dp(house+1))
             return memo[house]
         
-        dp(0)
-        return max(memo)
+        
+        
+        return dp(0)
