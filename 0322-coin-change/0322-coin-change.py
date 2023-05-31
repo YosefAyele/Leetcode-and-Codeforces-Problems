@@ -4,12 +4,12 @@ class Solution:
         queue = deque()
         queue.append((0,0))
      
-        ans = inf
+        
         
         while queue:
             total, step = queue.popleft()
             if total == amount:
-                ans = min(ans,step)
+                return step
             elif total < amount:
                 for coin in coins:
                     newtotal = total + coin
@@ -17,6 +17,6 @@ class Solution:
                         queue.append((newtotal,step + 1))
                         seen.add(newtotal)
                         
-        return ans if ans < inf else -1
+        return -1
                         
                         
