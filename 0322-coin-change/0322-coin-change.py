@@ -1,25 +1,22 @@
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
+        seen = set([0])
+        queue = deque()
+        queue.append((0,0))
+     
+        ans = inf
         
-        memo = {}
-        
-        
-        def dp(total):
+        while queue:
+            total, step = queue.popleft()
             if total == amount:
-                return 0
-            if total > amount:
-                return inf
-            if total not in memo:
-                curr = inf
+                ans = min(ans,step)
+            elif total < amount:
                 for coin in coins:
-                    new_total = total + coin
-                    curr = min(curr,dp(new_total) + 1)
-                memo[total] = curr
-
-            return memo[total]
-                    
-                    
-            
-        
-        return dp(0) if dp(0) < inf else -1
-        # print(memo)
+                    newtotal = total + coin
+                    if newtotal not in seen:
+                        queue.append((newtotal,step + 1))
+                        seen.add(newtotal)
+                        
+        return ans if ans < inf else -1
+                        
+                        
