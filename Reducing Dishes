@@ -1,0 +1,18 @@
+class Solution:
+    def maxSatisfaction(self, sat: List[int]) -> int:
+        
+        sat.sort()
+        
+        @cache
+        def dp(i,count):
+            if i == len(sat):
+                return 0
+            
+            not_take = dp(i+1,count)
+            curr = sat[i] * (count+1)
+            
+            take = dp(i+1,count+1) + curr
+
+            return max(take,not_take)
+        
+        return dp(0,0)
