@@ -1,0 +1,30 @@
+class Solution:
+    def bestTeamScore(self, scores: List[int], ages: List[int]) -> int:
+        
+        score_age = [[ages[i],scores[i]] for i in range(len(scores ))]
+
+        score_age.sort()
+
+        if len(scores) == 1:
+            return scores[0]
+        
+        @cache
+        def dp(i,last):
+
+            if i == len(scores) - 1:
+                if score_age[i][0] == score_age[last][0] or score_age[i][1] >= score_age[last][1]:
+                    return score_age[i][1]
+                return 0
+            if score_age[i][0] == score_age[last][0] or score_age[i][1] >= score_age[last][1]:
+                pick = score_age[i][1] + dp(i+1,i)
+            else:
+                pick = 0
+            
+            no_pick = dp(i+1,last)
+
+            return max(pick,no_pick)
+        ans = 0
+        for i in range(len(scores)):
+            ans = max(ans,dp(i,i))
+            
+        return ans
