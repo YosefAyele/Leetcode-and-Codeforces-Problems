@@ -1,0 +1,42 @@
+class TrieNode:
+  def __init__(self):
+    self.children = [None for _ in range(26)]
+    self.is_end = False
+    self.pass_through = 0
+
+class MapSum:
+
+    def __init__(self):
+      self.root = TrieNode()
+      self.keyVal = dict()
+
+    def insert(self, key: str, val: int) -> None:
+      curr = self.root
+      val_ = val
+      if key in self.keyVal:
+          val_ = val - self.keyVal[key]
+      for letter in key:
+        if not curr.children[ord(letter) - 97]:
+            curr.children[ord(letter) - 97] = TrieNode()
+        curr = curr.children[ord(letter) - 97]
+        curr.pass_through += val_
+
+      curr.is_end = True
+      self.keyVal[key] = val
+
+    def sum(self, prefix: str) -> int:
+      curr = self.root
+      
+      for letter in prefix:
+        if not curr.children[ord(letter)-97]:
+            return 0
+        curr = curr.children[ord(letter)-97]
+      return curr.pass_through
+        
+        
+        
+
+# Your MapSum object will be instantiated and called as such:
+# obj = MapSum()
+# obj.insert(key,val)
+# param_2 = obj.sum(prefix)
