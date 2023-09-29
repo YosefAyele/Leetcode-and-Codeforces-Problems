@@ -1,0 +1,53 @@
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+    
+    def insert(self,word:str) -> None:
+        curr = self.root
+        for i,letter in enumerate(word):
+            if curr.children[ord(letter) - 97] == None:
+                curr.children[ord(letter) - 97] = TrieNode()
+            curr = curr.children[ord(letter) - 97]
+
+        curr.is_end = True
+    def search(self,word:str) -> bool:
+        curr = self.root
+        for letter in word:
+            if curr.children[ord(letter)- 97]:
+                curr = curr.children[ord(letter) - 97]
+            else:
+                return False
+        if curr.is_end:
+                return True
+        return False
+    def startsWith(self, prefix: str) -> bool:
+        curr = self.root
+        
+        for letter in prefix:
+            if curr.children[ord(letter)-97]:
+                curr = curr.children[ord(letter) - 97]
+            else:
+                return False
+            
+        return True
+
+class TrieNode:
+    def __init__(self):
+        self.is_end = False
+        self.children = [None for _ in range(26)]
+class Solution:
+    def longestWord(self, words: List[str]) -> str:
+        words.sort()
+
+        words_trie = Trie()
+        longest = ""
+        for word in words:
+            if len(word) == 1 or words_trie.search(word[:-1]):
+                words_trie.insert(word)
+                if len(word) > len(longest):
+                    longest = word
+                elif len(word) == len(longest):
+                    if word < longest:
+                        longest = word
+        
+        return longest
