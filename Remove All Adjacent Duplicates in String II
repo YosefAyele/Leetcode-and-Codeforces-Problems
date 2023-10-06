@@ -1,0 +1,16 @@
+class Solution:
+    def removeDuplicates(self, s: str, k: int) -> str:
+        
+        
+        stack = []
+   
+        for i,val in enumerate(s):
+            if stack and stack[-1][0] == val:
+               stack[-1] = (val,stack[-1][1] + 1)
+               if stack[-1][1] == k:
+                   stack.pop()
+            else:
+                stack.append((val,1))
+             
+        return "".join([val[0]*val[1] for val in stack])
+                        
