@@ -1,0 +1,19 @@
+class Solution:
+    def findRadius(self, houses: List[int], heaters: List[int]) -> int:
+        
+        ans = 0
+        houses.sort()
+        heaters.sort()
+        
+        for i,city in enumerate(houses):
+            idx = bisect.bisect_right(heaters,city)
+            curr = inf
+            if idx > 0:
+                curr = min(curr,abs(city - heaters[idx-1]))
+            if idx < len(heaters)-1:
+                curr = min(curr,abs(city - heaters[idx+1]))
+            if 0 <= idx < len(heaters):
+                curr = min(curr,abs(city - heaters[idx]))
+            ans = max(ans,curr)
+        
+        return ans
