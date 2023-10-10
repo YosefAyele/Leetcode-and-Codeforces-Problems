@@ -1,0 +1,31 @@
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        base = 27
+        mod = 10**9 + 7
+        
+
+        need = 0
+        l = 0 
+        for r,letter in enumerate(needle):
+            need *= base
+            need += (ord(letter)-ord("a")+1)*base
+            need %= mod
+            
+        
+        l = 0
+        running = 0
+        for r,letter in enumerate(haystack):
+            running *= base
+            running += (ord(letter)-ord("a")+1)*base
+            running %= mod
+
+            if r-l+1 == len(needle):
+                if running == need:
+                    return l
+                running -= (ord(haystack[l]) - ord("a") + 1)*(base**(r-l+1))
+                l += 1
+        return -1
+
+
+
+        
