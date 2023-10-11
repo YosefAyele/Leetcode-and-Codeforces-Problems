@@ -1,0 +1,36 @@
+class Solution:
+    def repeatedStringMatch(self, a: str, b: str) -> int:
+        reps1 = ceil(len(b)/len(a))
+        reps2 = reps1 + 1
+        def calc_lps(string):
+            lps = [0]*len(string)
+
+            i = 0
+            j = 1
+
+            while j < len(string):
+                if string[i] == string[j]:
+                    i += 1
+                    lps[j] = i
+                    j += 1
+                else:
+                    if i == 0:
+                        lps[j] = 0
+                        j += 1
+                    else:
+                        i = lps[i-1]
+            return lps
+        
+        concated_str1 = b + "$" + a*reps1
+        lps1 = calc_lps(concated_str1)
+        for i in range(len(b)+1,len(concated_str1)):
+            if lps1[i] == len(b):
+                return reps1
+        
+        concated_str2 = b + "$" + a*reps2
+        lps2 = calc_lps(concated_str2)
+        for i in range(len(b)+1,len(concated_str2)):
+            if lps2[i] == len(b):
+                return reps2
+        
+        return -1
