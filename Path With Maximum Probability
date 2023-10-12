@@ -1,0 +1,33 @@
+class Solution:
+    def maxProbability(self, n: int, edges: List[List[int]], succProb: List[float], start_node: int, end_node: int) -> float:
+        
+        graph = defaultdict(list)
+        for i in range(len(edges)):
+            a,b = edges[i]
+            p = succProb[i]
+
+            graph[a].append((b,p))
+            graph[b].append((a,p))
+        
+        prob = {start_node:1}
+        heap = [(-1,start_node)]
+        
+        while heap:
+            p, node = heapq.heappop(heap)
+
+            if node == end_node:
+                return -p
+            
+            for child,pp in graph[node]:
+                if child not in prob:
+                    prob[child] = -p*pp
+                    heappush(heap,(p*pp,child))
+                else:
+                    if pp * p * -1 > prob[child]:
+                        prob[child] = pp * p * -1
+                        heappush(heap,(p*pp,child))
+        return 0
+                        
+                
+
+
