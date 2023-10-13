@@ -1,0 +1,15 @@
+class Solution:
+    def countOrders(self, n: int) -> int:
+        mod = pow(10,9) + 7
+        def arthimetic_sum(n):
+            return (n*(n+1))//2
+        
+        n *= 2
+        ans = 1
+        n -= 1
+        while n > 0:
+            ans *= arthimetic_sum(n)
+            ans %= mod
+            n -= 2
+        
+        return ans
