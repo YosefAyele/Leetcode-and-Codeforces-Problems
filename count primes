@@ -1,0 +1,22 @@
+class Solution:
+    def countPrimes(self, n: int) -> int:
+        
+        sieve = [True]*(n+5)
+
+        sieve[0] = sieve[1] = False
+
+        d = 2 
+
+        while d*d < n:
+            i = d*d
+            while i < n:
+                sieve[i] = False
+                i += d
+            d += 1
+        
+        ans = 0
+        for i in range(n):
+            if sieve[i]:
+                ans += 1
+        
+        return ans
