@@ -1,0 +1,9 @@
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        total = m + n -2
+        r = n - 1
+        d = m - 1
+
+        ans = math.factorial(total)//(math.factorial(r)*math.factorial(d))
+
+        return ans
