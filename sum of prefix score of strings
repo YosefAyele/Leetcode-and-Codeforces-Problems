@@ -1,0 +1,63 @@
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+    
+    def insert(self,word:str) -> None:
+        curr = self.root
+        for i,letter in enumerate(word):
+            if curr.children[ord(letter) - 97] == None:
+                curr.children[ord(letter) - 97] = TrieNode()
+                curr.children[ord(letter) - 97].count = 1
+            else:
+                curr.children[ord(letter) - 97].count += 1
+            curr = curr.children[ord(letter) - 97]
+
+        curr.is_end = True
+    def search(self,word:str) -> bool:
+        curr = self.root
+        score = 0
+        for letter in word:
+            if curr.children[ord(letter)- 97]:
+                curr_score = curr.children[ord(letter)- 97].count
+                score += curr_score
+                curr = curr.children[ord(letter) - 97]
+                
+            else:
+                return False
+        if curr.is_end:
+                return True,score
+        return False,score
+    def startsWith(self, prefix: str) -> bool:
+        curr = self.root
+        path = ""
+        for letter in prefix:
+            if curr.children[ord(letter)-97]:
+                curr = curr.children[ord(letter) - 97]
+            else:
+                return False
+            
+        return True
+    
+        
+          
+
+class TrieNode:
+    def __init__(self):
+        self.is_end = False
+        self.children = [None for _ in range(26)]
+        self.count = 0
+class Solution:
+    def sumPrefixScores(self, words: List[str]) -> List[int]:
+        trie = Trie()
+
+        for word in words:
+            trie.insert(word)
+        
+        ans = []
+
+        for word in words:
+            boool,count = trie.search(word)
+            ans.append(count)
+        
+        return ans
+            
