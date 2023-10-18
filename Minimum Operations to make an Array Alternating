@@ -1,0 +1,48 @@
+class Solution:
+    def minimumOperations(self, nums: List[int]) -> int:
+        
+        n = len(nums)
+        if n == 1:
+            return 0
+
+        counts1 = defaultdict(int)
+        for i in range(0,n,2):
+            counts1[nums[i]] += 1
+        num1 = max(counts1.items(),key = lambda x: x[1])[0]
+        counts2 = defaultdict(int)
+        for i in range(1,n,2):
+            counts2[nums[i]] += 1
+        num2 = max(counts1.items(),key = lambda x: x[1])[0]
+
+        def calc(cnt):
+
+            max_ = 0
+            num = -1
+            for key,val in cnt:
+                if val > max_ and key != num1:
+                    num = key
+                    max_ = val
+
+            return num
+        
+        def count(num1,num2):
+            ops = 0
+            for i in range(0,n,2):
+                if nums[i] != num1:
+                    ops += 1
+            for i in range(1,n,2):
+                if nums[i] != num2:
+                    ops += 1
+            return ops
+
+        if num1 != num2:
+            return min(count(num1,num2),count(num2,num1))
+            
+        x1 = calc(counts1.items())
+        x2 = calc(counts2.items())
+        cnt1 = min(count(x1,num2),count(num2,x1))
+        cnt2 = min(count(x2,num1),count(num1,x2))
+
+        return min(cnt1,cnt2)
+        
+        
