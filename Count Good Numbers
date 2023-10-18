@@ -1,0 +1,12 @@
+class Solution:
+    def countGoodNumbers(self, n: int) -> int:
+        mod = pow(10,9) + 7
+        if n%2:
+            evens = n//2 + 1
+            odds = n//2
+        else:
+            evens = odds = n//2
+        
+        ans = pow(5,evens,mod)*pow(4,odds,mod)
+
+        return ans % mod
