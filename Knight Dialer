@@ -1,0 +1,40 @@
+class Solution:
+    def knightDialer(self, n: int) -> int:
+        dialpad = [[True]*3 for _ in range(4)]
+        dialpad[3][0] = dialpad[3][2] = False
+        
+        mod = pow(10,9) + 7
+        def isValid(r,c):
+            if 0 <= r < 4 and 0 <= c < 3:
+                 if dialpad[r][c]:
+                     return True
+            return False
+        directions = [(-2,-1),(-2,1),(-1,-2),(1,-2),(-1,2),(1,2),(2,-1),(2,1)]
+
+        @cache
+        def dp(r,c,length):
+
+            if length == n:
+                return 1
+         
+            ans = 0
+            for x,y in directions:
+                r_ = r + x
+                c_ = c + y
+                if isValid(r_,c_):
+                    ans += dp(r_,c_,length+1)
+                    ans %= mod
+
+            return ans
+        
+        ans = 0
+        for r in range(4):
+            for c in range(3):
+                if dialpad[r][c]:
+                    ans += dp(r,c,1)
+                    ans %= mod
+        
+        return ans
+            
+                
+
